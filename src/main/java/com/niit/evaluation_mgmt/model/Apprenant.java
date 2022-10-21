@@ -1,5 +1,6 @@
 package com.niit.evaluation_mgmt.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -8,11 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Apprenant extends Gestionnaire {
+public class Apprenant extends Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
@@ -23,8 +25,11 @@ public class Apprenant extends Gestionnaire {
      @OneToOne(cascade = CascadeType.ALL)
      private Formation  formation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Groupe groupe;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Evaluation> evaluations;
 
 
     public Apprenant() {
@@ -98,6 +103,51 @@ public class Apprenant extends Gestionnaire {
             ", matricule='" + getMatricule() + "'" +
             ", niveau='" + getNiveau() + "'" +
             "}";
+    }
+
+    
+
+
+    /**
+     * @return Formation return the formation
+     */
+    public Formation getFormation() {
+        return formation;
+    }
+
+    /**
+     * @param formation the formation to set
+     */
+    public void setFormation(Formation formation) {
+        this.formation = formation;
+    }
+
+    /**
+     * @return Groupe return the groupe
+     */
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    /**
+     * @param groupe the groupe to set
+     */
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+
+    /**
+     * @return List<Evaluation> return the evaluations
+     */
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    /**
+     * @param evaluations the evaluations to set
+     */
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 
 }

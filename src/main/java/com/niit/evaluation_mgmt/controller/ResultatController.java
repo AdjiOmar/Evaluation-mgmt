@@ -13,44 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.niit.evaluation_mgmt.model.Module;
-import com.niit.evaluation_mgmt.service.ModuleService;
+import com.niit.evaluation_mgmt.model.Resultat;
+import com.niit.evaluation_mgmt.service.ResultatService;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value ="/module")
-public class ModuleController {
+@RequestMapping(value = "/resultat")
+public class ResultatController {
 
-    private final ModuleService service;
+    private final ResultatService service;
 
-    public ModuleController(ModuleService service) {
+    public ResultatController(ResultatService service) {
         this.service = service;
     }
 
     @PostMapping
-    public Module create(@RequestBody Module module) {
-        return service.create(module);
+    public Resultat create(@RequestBody Resultat resultat) { 
+        return service.create(resultat);
     }
     @GetMapping(value="/{id}")
-    public Optional<Module> getById(@PathVariable Long id) {
+    public Optional<Resultat> getById(@PathVariable Long id) {
         return service.getById(id);
     }
     
 
     @GetMapping
-    public List<Module> getAll() {
+    public List<Resultat> getAll() {
         return service.getAll();
     }
 
     @PutMapping
-    public Module update(@RequestBody Module module) {
-        return service.update(module);
+    public Resultat update(@RequestBody Resultat resultat) {
+        return service.update(resultat);
     }
 
     @DeleteMapping(value="/{id}")
     public void delete(@PathVariable Long id){
         service.delete(id);
     }
-    
     
 }

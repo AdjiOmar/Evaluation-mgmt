@@ -12,10 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Formateur extends Gestionnaire {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+public class Formateur extends Utilisateur {
+    
     private String specialite;
     private String matricule;
 
@@ -23,7 +21,7 @@ public class Formateur extends Gestionnaire {
     private List<Formation> formations;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Seance> seances;
+    private List<Seance> seances; 
 
 
     public Formateur() {

@@ -5,17 +5,18 @@ import java.util.Optional;
 import com.niit.evaluation_mgmt.model.Question;
 import com.niit.evaluation_mgmt.service.QuestionService;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping(value="/question")
 
 public class QuestionController {
@@ -31,7 +32,7 @@ public Question create(@RequestBody Question question) {
 }
 
 @GetMapping
-public List<Question> getAll(@RequestParam String question) {
+public List<Question> getAll() {
     return service.getAll();
 }
 
@@ -50,4 +51,4 @@ public void delete(@PathVariable Long id){
     service.delete(id);
 }
 
-}
+} 

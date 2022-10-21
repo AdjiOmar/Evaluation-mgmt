@@ -3,6 +3,7 @@ package com.niit.evaluation_mgmt.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.niit.evaluation_mgmt.model.TypeEvaluation;
@@ -11,11 +12,12 @@ import com.niit.evaluation_mgmt.repository.TypeEvaluationRepository;
 @Service
 public class TypeEvaluationService {
 
-    private final TypeEvaluationRepository repo;
+    @Autowired
+    private TypeEvaluationRepository repo;
 
-    public TypeEvaluationService(TypeEvaluationRepository repo) {
-        this.repo = repo;
-    }
+    // public TypeEvaluationService(TypeEvaluationRepository repo) {
+    //     this.repo = repo;
+    // }
 
 
     public List<TypeEvaluation> getAll() {

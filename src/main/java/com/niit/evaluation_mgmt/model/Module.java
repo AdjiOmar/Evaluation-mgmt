@@ -100,5 +100,36 @@ public class Module {
             ", volumehoraire='" + getVolumehoraire() + "'" +
             "}";
     }
+
     
+    
+
+    /**
+     * @return List<Evaluation> return the evaluations
+     */
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    /**
+     * @param evaluations the evaluations to set
+     */
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
+    }
+
+    /**
+     * @return List<Formation> return the formations
+     */
+    public List<Formation> getFormations() {
+        return formations;
+    }
+
+    /**
+     * @param formations the formations to set
+     */
+    public void setFormations(List<Formation> formations) {
+        this.formations = formations;
+    }
+
 }

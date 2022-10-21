@@ -5,9 +5,11 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -19,6 +21,9 @@ public class Groupe {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Apprenant> apprenants;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Groupe groupe;
+
 
     public Groupe() {
     }
@@ -29,70 +34,48 @@ public class Groupe {
         this.apprenants = apprenants;
     }
 
+       
+
+    /**
+     * @return Long return the id
+     */
     public Long getId() {
-        return this.id;
+        return id;
     }
 
+    /**
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * @return String return the code
+     */
     public String getCode() {
-        return this.code;
+        return code;
     }
 
+    /**
+     * @param code the code to set
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * @return List<Apprenant> return the apprenants
+     */
     public List<Apprenant> getApprenants() {
-        return this.apprenants;
+        return apprenants;
     }
 
+    /**
+     * @param apprenants the apprenants to set
+     */
     public void setApprenants(List<Apprenant> apprenants) {
         this.apprenants = apprenants;
     }
 
-    public Groupe id(Long id) {
-        setId(id);
-        return this;
-    }
-
-    public Groupe code(String code) {
-        setCode(code);
-        return this;
-    }
-
-    public Groupe apprenants(List<Apprenant> apprenants) {
-        setApprenants(apprenants);
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Groupe)) {
-            return false;
-        }
-        Groupe groupe = (Groupe) o;
-        return Objects.equals(id, groupe.id) && Objects.equals(code, groupe.code) && Objects.equals(apprenants, groupe.apprenants);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, code, apprenants);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", code='" + getCode() + "'" +
-            ", apprenants='" + getApprenants() + "'" +
-            "}";
-    }
-
-
-    
 }

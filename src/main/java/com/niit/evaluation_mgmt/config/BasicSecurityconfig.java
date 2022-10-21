@@ -2,7 +2,6 @@ package com.niit.evaluation_mgmt.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,8 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+
 
 @Configuration
 @EnableWebSecurity
@@ -36,8 +36,8 @@ public class BasicSecurityconfig {
     //     .password(bCryptPasswordEncoder.encode("apprPass"))
     //     .roles("APPRENANT")
     //     .build());
-    manager.createUser(User.withUsername("admin")
-        .password(bCryptPasswordEncoder.encode("adminPass"))
+    manager.createUser(User.withUsername("matricule")
+        .password(bCryptPasswordEncoder.encode("passer123"))
         .roles("ADMIN")
         .build());
     return manager;
@@ -45,11 +45,11 @@ public class BasicSecurityconfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf()
+    http.cors().and().csrf()
         .disable()
         .authorizeRequests()
         .anyRequest()
-        .authenticated()
+        .permitAll()
         .and()
         .httpBasic()
         .and()
@@ -72,4 +72,6 @@ public WebSecurityCustomizer webSecurityCustomizer() {
       .antMatchers("/h2-console/**"
       );
 }
+
+
 }

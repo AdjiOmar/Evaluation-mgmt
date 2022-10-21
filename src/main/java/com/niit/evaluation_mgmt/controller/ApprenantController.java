@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,8 @@ import com.niit.evaluation_mgmt.model.Apprenant;
 import com.niit.evaluation_mgmt.service.ApprenantService;
 
 @RestController
+// @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@CrossOrigin
 @RequestMapping(value = "/apprenant")
 public class ApprenantController {
     private final ApprenantService service;

@@ -10,12 +10,13 @@ import com.niit.evaluation_mgmt.repository.GestionnaireRepository;
 
 @Service
 public class GestionnaireService {
-
     private final GestionnaireRepository repo;
+
 
     public GestionnaireService(GestionnaireRepository repo) {
         this.repo = repo;
     }
+
     public List<Gestionnaire> getAll() {
         return repo.findAll();
     }
@@ -35,4 +36,5 @@ public class GestionnaireService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+    
 }

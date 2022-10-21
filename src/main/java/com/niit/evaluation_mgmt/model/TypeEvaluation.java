@@ -1,6 +1,7 @@
 package com.niit.evaluation_mgmt.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,55 +16,85 @@ public class TypeEvaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String evaluationType;
+    private String designation;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Evaluation> evaluations;
 
-    
-   
 
-    /**
-     * @return Long return the id
-     */
-    public Long getId() {
-        return id;
+    public TypeEvaluation() {
     }
 
-    /**
-     * @param id the id to set
-     */
+    public TypeEvaluation(Long id, String designation, List<Evaluation> evaluations) {
+        this.id = id;
+        this.designation = designation;
+        this.evaluations = evaluations;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return String return the evaluationType
-     */
-    public String getEvaluationType() {
-        return evaluationType;
+    public String getDesignation() {
+        return this.designation;
     }
 
-    /**
-     * @param evaluationType the evaluationType to set
-     */
-    public void setEvaluationType(String evaluationType) {
-        this.evaluationType = evaluationType;
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
-
-    /**
-     * @return List<Evaluation> return the evaluations
-     */
     public List<Evaluation> getEvaluations() {
-        return evaluations;
+        return this.evaluations;
     }
 
-    /**
-     * @param evaluations the evaluations to set
-     */
     public void setEvaluations(List<Evaluation> evaluations) {
         this.evaluations = evaluations;
     }
+
+    public TypeEvaluation id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public TypeEvaluation designation(String designation) {
+        setDesignation(designation);
+        return this;
+    }
+
+    public TypeEvaluation evaluations(List<Evaluation> evaluations) {
+        setEvaluations(evaluations);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof TypeEvaluation)) {
+            return false;
+        }
+        TypeEvaluation typeEvaluation = (TypeEvaluation) o;
+        return Objects.equals(id, typeEvaluation.id) && Objects.equals(designation, typeEvaluation.designation) && Objects.equals(evaluations, typeEvaluation.evaluations);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, designation, evaluations);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", designation='" + getDesignation() + "'" +
+            ", evaluations='" + getEvaluations() + "'" +
+            "}";
+    }
+    
+   
 
 }

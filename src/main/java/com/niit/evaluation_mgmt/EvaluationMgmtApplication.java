@@ -8,6 +8,9 @@ public class EvaluationMgmtApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EvaluationMgmtApplication.class, args);
+
 	}
+
+	
 
 }

@@ -3,6 +3,7 @@ package com.niit.evaluation_mgmt.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.niit.evaluation_mgmt.model.Formateur;
 import com.niit.evaluation_mgmt.service.FormateurService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/formateur")
 public class FormateurControlleur {
 
