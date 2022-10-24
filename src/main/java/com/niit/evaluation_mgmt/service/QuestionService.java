@@ -3,6 +3,7 @@ package com.niit.evaluation_mgmt.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.niit.evaluation_mgmt.model.Evaluation;
 import org.springframework.stereotype.Service;
 
 import com.niit.evaluation_mgmt.model.Question;
@@ -31,4 +32,9 @@ public Question update(Question question){
 public void delete(Long id){
      repo.deleteById(id);
 }
+
+public List<Question> getQuestionsOfEvaluation(Evaluation evaluation){
+        return repo.findByEvaluation(evaluation);
+}
+
 }

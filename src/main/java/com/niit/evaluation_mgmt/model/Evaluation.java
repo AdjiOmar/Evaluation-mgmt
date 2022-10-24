@@ -1,41 +1,41 @@
 package com.niit.evaluation_mgmt.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Evaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "evalId")
+    private Long evalId;
     private String nom;
+    @Column(length = 3000)
     private String description;
     private LocalDate date;
     private int nbreQuestion;
+    private int noteMaximal;
+    private boolean active = false;
     //  private List <Question> questions;
     // private double resultat;
     private LocalTime duration;
-
     // @ManyToMany(cascade = CascadeType.ALL)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "evaluation")
-    private List<Question> questions;
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY,
+               mappedBy = "evaluation")
+    private Set<Question> questions;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private TypeEvaluation typeEvaluation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Module module;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -44,26 +44,52 @@ public class Evaluation {
     public Evaluation() {
     }
 
-    public Evaluation(Long id, String nom, String description, LocalDate date, int nbreQuestion, LocalTime duration,
-            List<Question> questions, TypeEvaluation typeEvaluation, Module module, Apprenant apprenant) {
-        this.id = id;
+    public Evaluation(Long evalId, String nom, String description, LocalDate date, int nbreQuestion, int noteMaximal, LocalTime duration,
+            Set<Question> questions, TypeEvaluation typeEvaluation, Module module, Apprenant apprenant, boolean active) {
+        this.evalId = evalId;
         this.nom = nom;
         this.description = description;
         this.date = date;
         this.nbreQuestion = nbreQuestion;
+        this.noteMaximal = noteMaximal;
         this.duration = duration;
         this.questions = questions;
         this.typeEvaluation = typeEvaluation;
         this.module = module;
         this.apprenant = apprenant;
+        this.active = active;
+    }
+
+    public Long getEvalId() {
+        return evalId;
+    }
+
+    public void setEvalId(Long evalId) {
+        this.evalId = evalId;
+    }
+
+    public int getNoteMaximal() {
+        return noteMaximal;
+    }
+
+    public void setNoteMaximal(int noteMaximal) {
+        this.noteMaximal = noteMaximal;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Long getId() {
-        return this.id;
+        return this.evalId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long evalId) {
+        this.evalId = evalId;
     }
 
     public String getNom() {
@@ -106,11 +132,11 @@ public class Evaluation {
         this.duration = duration;
     }
 
-    public List<Question> getQuestions() {
+    public Set<Question> getQuestions() {
         return this.questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(Set<Question> questions) {
         this.questions = questions;
     }
 
@@ -168,7 +194,7 @@ public class Evaluation {
         return this;
     }
 
-    public Evaluation questions(List<Question> questions) {
+    public Evaluation questions(Set<Question> questions) {
         setQuestions(questions);
         return this;
     }
@@ -196,7 +222,7 @@ public class Evaluation {
             return false;
         }
         Evaluation evaluation = (Evaluation) o;
-        return Objects.equals(id, evaluation.id) && Objects.equals(nom, evaluation.nom)
+        return Objects.equals(evalId, evaluation.evalId) && Objects.equals(nom, evaluation.nom)
                 && Objects.equals(description, evaluation.description) && Objects.equals(date, evaluation.date)
                 && Objects.equals(nbreQuestion, evaluation.nbreQuestion)
                 && Objects.equals(duration, evaluation.duration) && Objects.equals(questions, evaluation.questions)
@@ -206,7 +232,7 @@ public class Evaluation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nom, description, date, nbreQuestion, duration, questions, typeEvaluation, module,
+        return Objects.hash(evalId, nom, description, date, nbreQuestion, duration, questions, typeEvaluation, module,
                 apprenant);
     }
 

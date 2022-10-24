@@ -1,39 +1,62 @@
 package com.niit.evaluation_mgmt.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 5000)
     private String libele;
     private String reponse1;
     private String reponse2;
     private String reponse3;
     private String reponse4;
+    @JsonIgnore
     private String bonneReponse;
+
+    @Transient
+    private String reponseChoisie;
    // private boolean isGood;
 
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    private List<Evaluation> evaluations;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Evaluation evaluation;
+
 
    public Question() {
     }
 
-    public Question(Long id, String libele, String reponse1, String reponse2, String reponse3, String reponse4, String bonneReponse) {
+    public String getReponseChoisie() {
+        return reponseChoisie;
+    }
+
+    public void setReponseChoisie(String reponseChoisie) {
+        this.reponseChoisie = reponseChoisie;
+    }
+
+    public Evaluation getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
+    }
+
+    public Question(Long id, String libele, String reponse1, String reponse2, String reponse3, String reponse4, String bonneReponse, String reponseChoisie, Evaluation evaluation) {
         this.id = id;
         this.libele = libele;
         this.reponse1 = reponse1;
@@ -41,6 +64,8 @@ public class Question {
         this.reponse3 = reponse3;
         this.reponse4 = reponse4;
         this.bonneReponse = bonneReponse;
+        this.reponseChoisie = reponseChoisie;
+        this.evaluation = evaluation;
     }
 
     public Long getId() {
