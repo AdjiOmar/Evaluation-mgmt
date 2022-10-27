@@ -8,6 +8,7 @@ import com.niit.evaluation_mgmt.service.EvaluationService;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins= "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping(value="/evaluation")
 public class EvaluationController {
 
@@ -33,11 +34,11 @@ public class EvaluationController {
     }
 
     @PostMapping
-    public Evaluation create(@RequestBody Evaluation evaluation) { 
-        return service.create(evaluation);
+    public ResponseEntity<Evaluation> create(@RequestBody Evaluation evaluation) { 
+        return ResponseEntity.ok(service.create(evaluation));
     }
     @GetMapping(value="/{id}")
-    public Optional<Evaluation> getById(@PathVariable Long id) {
+    public Evaluation getById(@PathVariable Long id) {
         return service.getById(id);
     }
     

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.niit.evaluation_mgmt.model.Evaluation;
 
 @Repository
-public interface EvaluationRepository extends JpaRepository<Evaluation ,Long>{
+public interface EvaluationRepository extends JpaRepository<Evaluation, Long> {
+    
     
 } 

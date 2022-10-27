@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.niit.evaluation_mgmt.model.Evaluation;
 import com.niit.evaluation_mgmt.model.Question;
 import com.niit.evaluation_mgmt.repository.QuestionRepository;
 
@@ -16,19 +17,28 @@ public class QuestionService {
     public QuestionService(QuestionRepository repo) {
         this.repo = repo;
     }
-public List<Question> getAll() {
-    return repo.findAll();
-}   
-public Optional<Question> getById(Long id){
-    return repo.findById(id);
-}
-public Question create(Question question){
-    return repo.save(question);
-}
-public Question update(Question question){
-    return repo.save(question);
-}
-public void delete(Long id){
-     repo.deleteById(id);
-}
+
+    public List<Question> getAll() {
+        return repo.findAll();
+    }
+
+    public Optional<Question> getById(Long id) {
+        return repo.findById(id);
+    }
+
+    public List<Question> findByEvaluation(Evaluation evaluation) {
+        return repo.findByEvaluation(evaluation);
+    }
+
+    public Question create(Question question) {
+        return repo.save(question);
+    }
+
+    public Question update(Question question) {
+        return repo.save(question);
+    }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
 }
