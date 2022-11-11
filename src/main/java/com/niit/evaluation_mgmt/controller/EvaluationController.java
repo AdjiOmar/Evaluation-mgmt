@@ -6,7 +6,6 @@ import com.niit.evaluation_mgmt.model.Evaluation;
 import com.niit.evaluation_mgmt.service.EvaluationService;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,9 +28,15 @@ public class EvaluationController {
 
     private final EvaluationService service;
 
-    public EvaluationController(EvaluationService service) {
+    public EvaluationController(EvaluationService service
+            // , ModuleService modService
+    ) {
         this.service = service;
+        // this.modService = modService;
     }
+    // private final ModuleService modService;
+
+   
 
     @PostMapping
     public ResponseEntity<Evaluation> create(@RequestBody Evaluation evaluation) { 
@@ -54,8 +59,13 @@ public class EvaluationController {
     }
 
     @DeleteMapping(value="/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+    
+    // @GetMapping(value = "/module/{id}")
+    // public List<Evaluation> findByModule(@PathVariable("id") Long id) {
+    //     return service.findByModule(id);
+    // }
     
 }

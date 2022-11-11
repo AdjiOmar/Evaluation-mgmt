@@ -18,7 +18,7 @@ public class TypeEvaluation {
     private Long id;
     private String designation;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Evaluation> evaluations;
 
 

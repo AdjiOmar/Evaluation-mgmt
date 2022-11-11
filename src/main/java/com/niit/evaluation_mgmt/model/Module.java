@@ -23,7 +23,7 @@ public class Module {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Evaluation> evaluations;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Formation> formations;
 
 
@@ -96,7 +96,7 @@ public class Module {
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", nom='" + getNom() + "'" +
+             ", nom='" + getNom() + "'" + 
             ", volumehoraire='" + getVolumehoraire() + "'" +
             "}";
     }

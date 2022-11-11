@@ -22,6 +22,7 @@ public class Question {
     private String reponse3;
     private String reponse4;
     private String bonneReponse;
+    private String reponse;
     private boolean isGood;
 
     // @ManyToMany(cascade = CascadeType.ALL)
@@ -34,13 +35,14 @@ public class Question {
     }
 
     public Question(Long id, String libele, String reponse1, String reponse2, String reponse3, String reponse4,
-            String bonneReponse) {
+            String bonneReponse, String reponse) {
         this.id = id;
         this.libele = libele;
         this.reponse1 = reponse1;
         this.reponse2 = reponse2;
         this.reponse3 = reponse3;
         this.reponse4 = reponse4;
+        this.reponse = reponse;
         this.bonneReponse = bonneReponse;
     }
 
@@ -98,6 +100,14 @@ public class Question {
 
     public void setBonneReponse(String bonneReponse) {
         this.bonneReponse = bonneReponse;
+    }
+
+     public String getReponse() {
+        return this.bonneReponse;
+    }
+
+    public void setReponse(String reponse ) {
+        this.reponse = reponse;
     }
 
     public Question id(Long id) {

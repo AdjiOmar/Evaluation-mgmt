@@ -15,10 +15,10 @@ public class Formateur extends Utilisateur {
     private String specialite;
     private String matricule;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Formation> formations;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Seance> seances; 
 
 

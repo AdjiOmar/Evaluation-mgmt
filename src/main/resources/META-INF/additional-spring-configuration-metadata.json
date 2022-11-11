@@ -1,0 +1,42 @@
+{"properties": [
+  {
+    "name": "spring.mail.smtp.socketFactory.class",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.smtp.socketFactory.class'"
+  },
+  {
+    "name": "spring.mail.smtp.ssl.trust",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.smtp.ssl.trust'"
+  },
+  {
+    "name": "spring.mail.smtp.ssl.protocols",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.smtp.ssl.protocols'"
+  },
+  {
+    "name": "spring.mail.smtp.socketFactory.class",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.smtp.socketFactory.class'"
+  },
+  {
+    "name": "spring.mail.smtp.socketFactory.class",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.smtp.socketFactory.class'"
+  },
+  {
+    "name": "spring.mail.smtp.socketFactory.class",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.smtp.socketFactory.class'"
+  },
+  {
+    "name": "niit.app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'niit.app.jwtSecret'"
+  },
+  {
+    "name": "niit.app.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'niit.app.jwtExpirationMs'"
+  }
+]}

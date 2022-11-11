@@ -1,7 +1,6 @@
 package com.niit.evaluation_mgmt.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +30,9 @@ public class ModuleController {
     public Module create(@RequestBody Module module) {
         return service.create(module);
     }
-    @GetMapping(value="/{id}")
-    public Optional<Module> getById(@PathVariable Long id) {
+   
+    @GetMapping(value = "/{id}")
+    public Module getById(@PathVariable Long id) {
         return service.getById(id);
     }
     

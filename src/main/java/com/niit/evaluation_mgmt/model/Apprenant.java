@@ -22,13 +22,13 @@ public class Apprenant extends Utilisateur {
      private String matricule;
      private String niveau;
 
-     @OneToOne(cascade = CascadeType.ALL)
+     @OneToOne(cascade = CascadeType.MERGE)
      private Formation  formation;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private Groupe groupe;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Evaluation> evaluations;
 
 

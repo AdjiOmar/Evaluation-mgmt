@@ -20,10 +20,10 @@ public class Seance {
      private String Objectifs;
      private String resume;
 
-     @ManyToOne(cascade = CascadeType.ALL)
+     @ManyToOne(cascade = CascadeType.MERGE)
      private Module module;
 
-     @ManyToOne(cascade = CascadeType.ALL)
+     @ManyToOne(cascade = CascadeType.MERGE)
      private Formateur formateur;
 
 
